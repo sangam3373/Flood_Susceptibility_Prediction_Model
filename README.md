@@ -118,3 +118,50 @@ These values describe the model's relative use of the features; they do not esta
 This project demonstrates a complete preliminary machine learning workflow, from district-level data preparation and exploratory analysis to regression modeling, evaluation, interpretation, and model persistence.
 
 The results provide a starting point for further research into district-level flood indicators. Additional data validation and independent environmental predictors are necessary before the model can be considered reliable for real-world flood-susceptibility assessment.
+
+## Machine Learning Model
+
+### Model Overview
+This project uses a trained machine learning regression model to estimate the **District Flood Susceptibility Index (DFSI)** based on historical flood-related indicators. The model is integrated into a Streamlit web application that allows users to enter indicator values and obtain an estimated DFSI score.
+
+### Input Features
+The model uses the following four input features:
+
+- **Percentage of Flooded Area:** Percentage of the district area affected by flooding.
+- **Permanent Water Value:** A measure representing permanent water presence, as defined in the source dataset.
+- **Corrected Percentage of Flooded Area:** Adjusted flooded-area percentage used by the dataset.
+- **Mean Flood Duration:** Average flood duration represented in the dataset.
+
+### Prediction Output
+The model returns a continuous numerical value representing the estimated DFSI score. For example, during application testing, one set of input values produced an estimated DFSI score of **14.26**.
+
+This output estimates an existing DFSI value. It should not be interpreted as a flood probability, a prediction of when a flood will occur, or an official flood warning.
+
+### Model Deployment
+The trained model is loaded using `joblib` and deployed through Streamlit, providing a simple interactive interface for generating predictions.
+
+**Technologies used:**
+- Python
+- Pandas and NumPy
+- Scikit-learn
+- Joblib
+- Streamlit
+- Jupyter Notebook
+
+### How to Run the Application
+1. Install the required Python packages:
+   ```bash
+   python -m pip install streamlit joblib pandas numpy scikit-learn
+   ```
+2. Navigate to the project directory containing `app.py` and the saved model files.
+3. Start the application:
+   ```bash
+   python -m streamlit run app.py
+   ```
+4. Open the local URL displayed in the terminal, usually `http://localhost:8501`.
+
+### Limitations
+- The application is an educational machine learning project, not a validated flood forecasting or emergency-warning system.
+- Prediction reliability depends on the quality, representativeness, and preprocessing of the training data.
+- Model performance should be assessed on held-out test data using appropriate regression metrics such as Mean Absolute Error (MAE), Root Mean Squared Error (RMSE), and R-squared (R²).
+- The estimated score should be interpreted according to the definition and scale of DFSI in the source dataset.
